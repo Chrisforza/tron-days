@@ -1,10 +1,15 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Flappy_Goose.vy = -100
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    Lives = Lives - 1
+})
 let ObstacleX = 0
 let Obstacle: Sprite = null
 let Obstacle_Choice = 0
 let Flappy_Goose: Sprite = null
+let Lives = 0
+Lives = 1
 info.setScore(0)
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -151,6 +156,14 @@ forever(function () {
     pause(1000)
     info.changeScoreBy(1)
 })
+forever(function () {
+    if (Lives < 1) {
+        game.over(false)
+    }
+})
+forever(function () {
+    Flappy_Goose.setFlag(SpriteFlag.StayInScreen, true)
+})
 game.onUpdateInterval(3000, function () {
     Obstacle_Choice = randint(1, 6)
     if (Obstacle_Choice == 1) {
@@ -171,7 +184,7 @@ game.onUpdateInterval(3000, function () {
             ccbbbbbbbbbbbbbbbbbbbbcc
             cccccccccccccccccccccccc
             ..cbbc............cbbc..
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
         ObstacleX = 0
     } else if (Obstacle_Choice == 2) {
         Obstacle = sprites.create(img`
@@ -223,7 +236,7 @@ game.onUpdateInterval(3000, function () {
             ........................
             ........................
             ........................
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
     } else if (Obstacle_Choice == 3) {
         Obstacle = sprites.create(img`
             ........................
@@ -250,7 +263,7 @@ game.onUpdateInterval(3000, function () {
             ........................
             ........................
             ........................
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
     } else if (Obstacle_Choice == 4) {
         Obstacle = sprites.create(img`
             . . . . . . . . . . . . 
@@ -269,7 +282,7 @@ game.onUpdateInterval(3000, function () {
             . f f 6 6 6 6 f e e f . 
             . f f f f f f f f f f . 
             . . f f f . . . f f . . 
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
     } else if (Obstacle_Choice == 5) {
         Obstacle = sprites.create(img`
             .cccccccccccccccccccccc.
@@ -296,7 +309,7 @@ game.onUpdateInterval(3000, function () {
             fdcbbddddddddddddddbbcdf
             fdffffffffffffffffffffdf
             ffffffffffffffffffffffff
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
     } else if (Obstacle_Choice == 6) {
         Obstacle = sprites.create(img`
             . . . . . . . . . b 5 b . . . . 
@@ -315,7 +328,7 @@ game.onUpdateInterval(3000, function () {
             . c d d d d d d 5 5 5 5 5 d b . 
             . . c b d d d d d 5 5 5 b b . . 
             . . . c c c c c c c c b b . . . 
-            `, SpriteKind.Projectile)
+            `, SpriteKind.Enemy)
     } else {
     	
     }

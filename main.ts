@@ -6,14 +6,6 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         Flappy_Goose.ay = 300
     }
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Input_Choice == 1) {
-        Flappy_Goose.ay = 300
-        Flappy_Goose.vy = -75
-    } else {
-        Flappy_Goose.ay = 300
-    }
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Input_Choice == 0) {
         Flappy_Goose.vy = -100
@@ -273,17 +265,17 @@ Flappy_Goose = sprites.create(img`
     `, SpriteKind.Player)
 Flappy_Goose.ay = 300
 forever(function () {
-    if (Lives < 1) {
-        game.over(false)
-    }
-})
-forever(function () {
     pause(1000)
     info.changeScoreBy(1)
     time = time + 1
-})
-forever(function () {
     Flappy_Goose.setFlag(SpriteFlag.StayInScreen, true)
+    if (Lives < 1) {
+        game.over(false)
+    }
+    if (Input_Choice == 1 && controller.B.isPressed()) {
+        Flappy_Goose.ay = 300
+        Flappy_Goose.vy = -75
+    }
 })
 forever(function () {
     Upgrade.setVelocity(-10, Math.cos(time) * 40)

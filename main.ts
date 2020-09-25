@@ -1,14 +1,22 @@
+namespace SpriteKind {
+    export const Upgrade = SpriteKind.create()
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Flappy_Goose.vy = -100
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, otherSprite) {
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     Lives = Lives - 1
 })
-let ObstacleX = 0
+let Upgrade_Choice = 0
 let Obstacle: Sprite = null
 let Obstacle_Choice = 0
+let Upgrade: Sprite = null
 let Flappy_Goose: Sprite = null
 let Lives = 0
+let time = 0
 Lives = 1
 info.setScore(0)
 scene.setBackgroundImage(img`
@@ -153,16 +161,20 @@ Flappy_Goose = sprites.create(img`
     `, SpriteKind.Player)
 Flappy_Goose.ay = 300
 forever(function () {
-    pause(1000)
-    info.changeScoreBy(1)
-})
-forever(function () {
     if (Lives < 1) {
         game.over(false)
     }
 })
 forever(function () {
+    pause(1000)
+    info.changeScoreBy(1)
+    time = time + 1
+})
+forever(function () {
     Flappy_Goose.setFlag(SpriteFlag.StayInScreen, true)
+})
+forever(function () {
+    Upgrade.setVelocity(-10, Math.cos(time) * 40)
 })
 game.onUpdateInterval(3000, function () {
     Obstacle_Choice = randint(1, 6)
@@ -185,7 +197,6 @@ game.onUpdateInterval(3000, function () {
             cccccccccccccccccccccccc
             ..cbbc............cbbc..
             `, SpriteKind.Enemy)
-        ObstacleX = 0
     } else if (Obstacle_Choice == 2) {
         Obstacle = sprites.create(img`
             .....6feeeeeeeeeef6.....
@@ -335,4 +346,88 @@ game.onUpdateInterval(3000, function () {
     Obstacle.x = 160
     Obstacle.y = 70
     Obstacle.setVelocity(-45, 0)
+})
+game.onUpdateInterval(20000, function () {
+    Upgrade_Choice = randint(1, 4)
+    if (Upgrade_Choice == 1) {
+        Upgrade = sprites.create(img`
+            . . . . . . . e c 7 . . . . . . 
+            . . . . e e e c 7 7 e e . . . . 
+            . . c e e e e c 7 e 2 2 e e . . 
+            . c e e e e e c 6 e e 2 2 2 e . 
+            . c e e e 2 e c c 2 4 5 4 2 e . 
+            c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+            . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+            . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+            . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+            . . . 2 2 e e 4 4 4 2 e e . . . 
+            . . . . . 2 2 e e e e . . . . . 
+            `, SpriteKind.Upgrade)
+    } else if (Upgrade_Choice == 2) {
+        Upgrade = sprites.create(img`
+            . . . . . . . e c 7 . . . . . . 
+            . . . . e e e c 7 7 e e . . . . 
+            . . c e e e e c 7 e 2 2 e e . . 
+            . c e e e e e c 6 e e 2 2 2 e . 
+            . c e e e 2 e c c 2 4 5 4 2 e . 
+            c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+            . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+            . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+            . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+            . . . 2 2 e e 4 4 4 2 e e . . . 
+            . . . . . 2 2 e e e e . . . . . 
+            `, SpriteKind.Upgrade)
+    } else if (Upgrade_Choice == 3) {
+        Upgrade = sprites.create(img`
+            . . . . . . . e c 7 . . . . . . 
+            . . . . e e e c 7 7 e e . . . . 
+            . . c e e e e c 7 e 2 2 e e . . 
+            . c e e e e e c 6 e e 2 2 2 e . 
+            . c e e e 2 e c c 2 4 5 4 2 e . 
+            c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+            . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+            . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+            . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+            . . . 2 2 e e 4 4 4 2 e e . . . 
+            . . . . . 2 2 e e e e . . . . . 
+            `, SpriteKind.Upgrade)
+    } else if (Upgrade_Choice == 4) {
+        Upgrade = sprites.create(img`
+            . . . . . . . e c 7 . . . . . . 
+            . . . . e e e c 7 7 e e . . . . 
+            . . c e e e e c 7 e 2 2 e e . . 
+            . c e e e e e c 6 e e 2 2 2 e . 
+            . c e e e 2 e c c 2 4 5 4 2 e . 
+            c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+            c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+            . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+            . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+            . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+            . . . 2 2 e e 4 4 4 2 e e . . . 
+            . . . . . 2 2 e e e e . . . . . 
+            `, SpriteKind.Upgrade)
+    } else {
+    	
+    }
+    Upgrade.x = 160
+    Upgrade.y = 50
 })

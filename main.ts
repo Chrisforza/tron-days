@@ -1,12 +1,25 @@
 namespace SpriteKind {
     export const Upgrade = SpriteKind.create()
 }
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Input_Choice == 2) {
+        Flappy_Goose.ay = 300
+    }
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Input_Choice == 1) {
+        Flappy_Goose.vy = -75
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    if (Input_Choice == 0) {
+        Flappy_Goose.vy = -100
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, otherSprite) {
     if (Upgrade_Choice == 1) {
         Input_Choice = 1
+        Flappy_Goose.destroy()
         Flappy_Goose = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             e . . . . . . . e e . . . . . . 
@@ -25,8 +38,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
+        Upgrade.destroy()
     } else if (Upgrade_Choice == 2) {
         Input_Choice = 2
+        Flappy_Goose.destroy()
         Flappy_Goose = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             e . . . . . . . e e . . . . . . 
@@ -45,8 +61,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
+        Upgrade.destroy()
     } else if (Upgrade_Choice == 3) {
         Input_Choice = 3
+        Flappy_Goose.destroy()
         Flappy_Goose = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             e . . . . . . . e e . . . . . . 
@@ -65,28 +84,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
-    } else if (Upgrade_Choice == 4) {
-        Input_Choice = 4
-        Flappy_Goose = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            e . . . . . . . e e . . . . . . 
-            e e . . . . . . e e . . . . . . 
-            e e . . . . . e e e . . . . . . 
-            e e e . . e e e e . . . . . . . 
-            e e e e d d e e e . f f f . . . 
-            . e e e d d d e e f f f f f f f 
-            . e d d 1 1 d d d f f 1 1 f 2 . 
-            . e d d 1 1 1 d f f . . 1 f f f 
-            . d 1 1 1 1 1 d f f . . . . . . 
-            . e e 1 1 d e e . . . . . . . . 
-            . e . . . . . e . . . . . . . . 
-            e e e . . . e e e . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Player)
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
+        Upgrade.destroy()
     } else {
     	
+    }
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Input_Choice == 2) {
+        Flappy_Goose.ay = -300
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {

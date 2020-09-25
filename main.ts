@@ -35,52 +35,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             `, SpriteKind.Player)
         Upgrade.destroy()
         game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
-    } else if (Upgrade_Choice == 2) {
-        Input_Choice = 2
-        Flappy_Goose.destroy()
-        Flappy_Goose = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            e . . . . . . . e e . . . . . . 
-            e e . . . . . . e e . . . . . . 
-            e e . . . . . e e e . . . . . . 
-            e e e . . e e e e . . . . . . . 
-            e e e e d d e e e . f f f . . . 
-            . e e e d d d e e f f f f f f f 
-            . e d d 1 1 d d d f f 1 1 f 2 . 
-            . e d d 1 1 1 d f f . . 1 f f f 
-            . d 1 1 1 1 1 d f f . . . . . . 
-            . e e 1 1 d e e . . . . . . . . 
-            . e . . . . . e . . . . . . . . 
-            e e e . . . e e e . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Player)
-        Upgrade.destroy()
-        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
-    } else if (Upgrade_Choice == 3) {
-        Input_Choice = 3
-        Flappy_Goose.destroy()
-        Flappy_Goose = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            e . . . . . . . e e . . . . . . 
-            e e . . . . . . e e . . . . . . 
-            e e . . . . . e e e . . . . . . 
-            e e e . . e e e e . . . . . . . 
-            e e e e d d e e e . f f f . . . 
-            . e e e d d d e e f f f f f f f 
-            . e d d 1 1 d d d f f 1 1 f 2 . 
-            . e d d 1 1 1 d f f . . 1 f f f 
-            . d 1 1 1 1 1 d f f . . . . . . 
-            . e e 1 1 d e e . . . . . . . . 
-            . e . . . . . e . . . . . . . . 
-            e e e . . . e e e . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Player)
-        Upgrade.destroy()
-        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
     } else {
     	
     }
@@ -93,6 +47,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     Lives = Lives - 1
     Input_Choice = 0
+    Flappy_Goose.destroy()
     Flappy_Goose = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         e . . . . . . . e e . . . . . . 
@@ -112,6 +67,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Player)
 })
+let ObstacleY = 0
+let ObstacleX = 0
 let Obstacle: Sprite = null
 let Obstacle_Choice = 0
 let Upgrade: Sprite = null
@@ -264,25 +221,7 @@ Flappy_Goose = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 Flappy_Goose.ay = 300
-forever(function () {
-    if (Input_Choice == 1 && controller.B.isPressed()) {
-        Flappy_Goose.ay = 300
-        Flappy_Goose.vy = -75
-    }
-})
-forever(function () {
-    pause(1000)
-    info.changeScoreBy(1)
-    time = time + 1
-    Flappy_Goose.setFlag(SpriteFlag.StayInScreen, true)
-    if (Lives < 1) {
-        game.over(false)
-    }
-})
-forever(function () {
-    Upgrade.setVelocity(-10, Math.cos(time) * 40)
-})
-game.onUpdateInterval(3000, function () {
+game.onUpdateInterval(1000, function () {
     Obstacle_Choice = randint(1, 6)
     if (Obstacle_Choice == 1) {
         Obstacle = sprites.create(img`
@@ -303,6 +242,8 @@ game.onUpdateInterval(3000, function () {
             cccccccccccccccccccccccc
             ..cbbc............cbbc..
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 80
     } else if (Obstacle_Choice == 2) {
         Obstacle = sprites.create(img`
             .....6feeeeeeeeeef6.....
@@ -354,6 +295,8 @@ game.onUpdateInterval(3000, function () {
             ........................
             ........................
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 60
     } else if (Obstacle_Choice == 3) {
         Obstacle = sprites.create(img`
             ........................
@@ -381,6 +324,8 @@ game.onUpdateInterval(3000, function () {
             ........................
             ........................
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 90
     } else if (Obstacle_Choice == 4) {
         Obstacle = sprites.create(img`
             . . . . . . . . . . . . 
@@ -400,33 +345,29 @@ game.onUpdateInterval(3000, function () {
             . f f f f f f f f f f . 
             . . f f f . . . f f . . 
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 90
     } else if (Obstacle_Choice == 5) {
         Obstacle = sprites.create(img`
-            .cccccccccccccccccccccc.
-            cbddddddddddddddddddddbc
-            cddddddddddddddddddddddc
-            cddddddddddddddddddddddc
-            cddddddddddddddddddddddc
-            cddddddddddddddddddddddc
-            cddddddddddddddddddddddc
-            cbddddddddddddddddddddbc
-            ccbbbbbbbbbbbbbbbbbbbbcc
-            ccffffffffffffffffffffcc
-            cbcc33c6c44c3c7c66c3ccbc
-            cbcc33c6c44c3c7c66c3ccbc
-            fbcc33c6c44ccc7c66c3ccbf
-            fdccccccccccccccccccccdf
-            fdcbbddddddddddddddbbcdf
-            fdffffffffffffffffffffdf
-            fdccc6c33c4c6c44c3c7ccdf
-            fdccc6c33c4c6c44c3c7ccdf
-            fdccc6c33ccc6c44ccc7ccdf
-            fdccccccccccccccccccccdf
-            fdcbbddddddddddddddbbcdf
-            fdcbbddddddddddddddbbcdf
-            fdffffffffffffffffffffdf
-            ffffffffffffffffffffffff
+            . . . . . . . . . . . . . . . . 
+            . . . . . . 2 2 2 2 2 2 2 2 . . 
+            . . . . . 2 c 2 2 2 2 2 2 4 2 . 
+            . . . . 2 c c 2 2 2 2 2 2 4 c 2 
+            . . d 2 4 c c 2 4 4 4 4 4 4 c c 
+            . d 2 2 4 c b e e e e e e e 2 c 
+            . 2 2 2 4 b e e b b b e b b e 2 
+            . 2 2 2 2 2 e b b b b e b b b e 
+            . 2 2 2 2 e 2 2 2 2 2 e 2 2 2 e 
+            . 2 d d 2 e f e e e f e e e e e 
+            . d d 2 e e e f e e f e e e e e 
+            . e e e e e e e f f f e e e e e 
+            . e e e e f f f e e e e f f f f 
+            . . . e f f f f f e e f f f f f 
+            . . . . f f f f . . . . f f f . 
+            . . . . . . . . . . . . . . . . 
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 110
     } else if (Obstacle_Choice == 6) {
         Obstacle = sprites.create(img`
             . . . . . . . . . b 5 b . . . . 
@@ -446,16 +387,36 @@ game.onUpdateInterval(3000, function () {
             . . c b d d d d d 5 5 5 b b . . 
             . . . c c c c c c c c b b . . . 
             `, SpriteKind.Enemy)
+        ObstacleX = 200
+        ObstacleY = 10
     } else {
     	
     }
-    Obstacle.x = 160
-    Obstacle.y = 70
+    Obstacle.x = ObstacleX
+    Obstacle.y = ObstacleY
     Obstacle.setVelocity(-45, 0)
+})
+forever(function () {
+    if (Input_Choice == 1 && controller.B.isPressed()) {
+        Flappy_Goose.ay = 300
+        Flappy_Goose.vy = -75
+    }
+})
+forever(function () {
+    pause(1000)
+    info.changeScoreBy(1)
+    time = time + 1
+    Flappy_Goose.setFlag(SpriteFlag.StayInScreen, true)
+    if (Lives < 1) {
+        game.over(false)
+    }
+})
+forever(function () {
+    Upgrade.setVelocity(-10, Math.cos(time) * 40)
 })
 game.onUpdateInterval(20000, function () {
     if (0 == 0) {
-        Upgrade_Choice = randint(1, 4)
+        Upgrade_Choice = 1
         if (Upgrade_Choice == 1) {
             Upgrade = sprites.create(img`
                 . . . . . . . . . . . . . . . . 
@@ -475,67 +436,10 @@ game.onUpdateInterval(20000, function () {
                 . . . . 2 . . . . . 4 2 2 . . . 
                 . . . . . . . . . . . 2 . . . . 
                 `, SpriteKind.Upgrade)
-        } else if (Upgrade_Choice == 2) {
-            Upgrade = sprites.create(img`
-                . . . . . . . e c 7 . . . . . . 
-                . . . . e e e c 7 7 e e . . . . 
-                . . c e e e e c 7 e 2 2 e e . . 
-                . c e e e e e c 6 e e 2 2 2 e . 
-                . c e e e 2 e c c 2 4 5 4 2 e . 
-                c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-                . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-                . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-                . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-                . . . 2 2 e e 4 4 4 2 e e . . . 
-                . . . . . 2 2 e e e e . . . . . 
-                `, SpriteKind.Upgrade)
-        } else if (Upgrade_Choice == 3) {
-            Upgrade = sprites.create(img`
-                . . . . . . . e c 7 . . . . . . 
-                . . . . e e e c 7 7 e e . . . . 
-                . . c e e e e c 7 e 2 2 e e . . 
-                . c e e e e e c 6 e e 2 2 2 e . 
-                . c e e e 2 e c c 2 4 5 4 2 e . 
-                c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-                . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-                . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-                . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-                . . . 2 2 e e 4 4 4 2 e e . . . 
-                . . . . . 2 2 e e e e . . . . . 
-                `, SpriteKind.Upgrade)
-        } else if (Upgrade_Choice == 4) {
-            Upgrade = sprites.create(img`
-                . . . . . . . e c 7 . . . . . . 
-                . . . . e e e c 7 7 e e . . . . 
-                . . c e e e e c 7 e 2 2 e e . . 
-                . c e e e e e c 6 e e 2 2 2 e . 
-                . c e e e 2 e c c 2 4 5 4 2 e . 
-                c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-                . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-                . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-                . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-                . . . 2 2 e e 4 4 4 2 e e . . . 
-                . . . . . 2 2 e e e e . . . . . 
-                `, SpriteKind.Upgrade)
         } else {
         	
         }
-        Upgrade.x = 160
+        Upgrade.x = 200
         Upgrade.y = 50
     }
 })

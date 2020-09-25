@@ -8,7 +8,10 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Input_Choice == 1) {
+        Flappy_Goose.ay = 300
         Flappy_Goose.vy = -75
+    } else {
+        Flappy_Goose.ay = 300
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -38,8 +41,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
-        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
         Upgrade.destroy()
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
     } else if (Upgrade_Choice == 2) {
         Input_Choice = 2
         Flappy_Goose.destroy()
@@ -61,8 +64,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
-        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
         Upgrade.destroy()
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
     } else if (Upgrade_Choice == 3) {
         Input_Choice = 3
         Flappy_Goose.destroy()
@@ -84,8 +87,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, other
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.Player)
-        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
         Upgrade.destroy()
+        game.showLongText("Hold button B to use jetpack!", DialogLayout.Bottom)
     } else {
     	
     }
@@ -245,7 +248,7 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    f5555555555555555ffffffff555555555555555ffffffff555555555555555555fffffffff555555555555555555ffffffffff555555555555555ffffffffff5555555555555555ffffff5555555555
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -461,22 +464,22 @@ game.onUpdateInterval(20000, function () {
         Upgrade_Choice = randint(1, 4)
         if (Upgrade_Choice == 1) {
             Upgrade = sprites.create(img`
-                . . . . . . . e c 7 . . . . . . 
-                . . . . e e e c 7 7 e e . . . . 
-                . . c e e e e c 7 e 2 2 e e . . 
-                . c e e e e e c 6 e e 2 2 2 e . 
-                . c e e e 2 e c c 2 4 5 4 2 e . 
-                c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-                c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-                . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-                . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-                . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-                . . . 2 2 e e 4 4 4 2 e e . . . 
-                . . . . . 2 2 e e e e . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . d d d d d d d d d d d d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . d f f f d d d d f f f d . . 
+                . . . f f f . . . . f f f . . . 
+                . . . 2 4 2 . . . . 2 4 2 . . . 
+                . . . 4 4 2 . . . . 4 4 4 . . . 
+                . . . . 2 . . . . . 4 2 2 . . . 
+                . . . . . . . . . . . 2 . . . . 
                 `, SpriteKind.Upgrade)
         } else if (Upgrade_Choice == 2) {
             Upgrade = sprites.create(img`

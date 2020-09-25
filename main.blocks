@@ -15,4 +15,4 @@
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`</field></shadow></value><value name="kind"><shadow type="spritekind" id="L.+EALuQeL1@j*2KD@~s"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="playMelody" id="By;NIX{%H85lJwkl[dRP"><value name="melody"><shadow type="melody_editor" id="ZMc00Wyx4NEHXv~Dw{FV"><field name="melody">"- - - - - - - - "</field></shadow></value><value name="tempo"><shadow type="math_number_minmax" id="5W?@Sh_Iyc9r,7xt7c9h"><mutation min="40" max="500" label="Tempo" precision="0"/><field name="SLIDER">120</field></shadow></value></block></next></block></statement></block></xml>
+`</field></shadow></value><value name="kind"><shadow type="spritekind" id="L.+EALuQeL1@j*2KD@~s"><field name="MEMBER">Player</field></shadow></value></block></value></block></statement></block></xml>

@@ -16,3 +16,4 @@ let Flappy_Goose = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+music.playMelody("- - - - - - - - ", 120)

@@ -2,20 +2,123 @@ namespace SpriteKind {
     export const Upgrade = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    Flappy_Goose.vy = -100
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Upgrade, function (sprite, otherSprite) {
-	
+    if (Upgrade_Choice == 1) {
+        Input_Choice = 1
+        Flappy_Goose = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            e . . . . . . . e e . . . . . . 
+            e e . . . . . . e e . . . . . . 
+            e e . . . . . e e e . . . . . . 
+            e e e . . e e e e . . . . . . . 
+            e e e e d d e e e . f f f . . . 
+            . e e e d d d e e f f f f f f f 
+            . e d d 1 1 d d d f f 1 1 f 2 . 
+            . e d d 1 1 1 d f f . . 1 f f f 
+            . d 1 1 1 1 1 d f f . . . . . . 
+            . e e 1 1 d e e . . . . . . . . 
+            . e . . . . . e . . . . . . . . 
+            e e e . . . e e e . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Player)
+    } else if (Upgrade_Choice == 2) {
+        Input_Choice = 2
+        Flappy_Goose = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            e . . . . . . . e e . . . . . . 
+            e e . . . . . . e e . . . . . . 
+            e e . . . . . e e e . . . . . . 
+            e e e . . e e e e . . . . . . . 
+            e e e e d d e e e . f f f . . . 
+            . e e e d d d e e f f f f f f f 
+            . e d d 1 1 d d d f f 1 1 f 2 . 
+            . e d d 1 1 1 d f f . . 1 f f f 
+            . d 1 1 1 1 1 d f f . . . . . . 
+            . e e 1 1 d e e . . . . . . . . 
+            . e . . . . . e . . . . . . . . 
+            e e e . . . e e e . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Player)
+    } else if (Upgrade_Choice == 3) {
+        Input_Choice = 3
+        Flappy_Goose = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            e . . . . . . . e e . . . . . . 
+            e e . . . . . . e e . . . . . . 
+            e e . . . . . e e e . . . . . . 
+            e e e . . e e e e . . . . . . . 
+            e e e e d d e e e . f f f . . . 
+            . e e e d d d e e f f f f f f f 
+            . e d d 1 1 d d d f f 1 1 f 2 . 
+            . e d d 1 1 1 d f f . . 1 f f f 
+            . d 1 1 1 1 1 d f f . . . . . . 
+            . e e 1 1 d e e . . . . . . . . 
+            . e . . . . . e . . . . . . . . 
+            e e e . . . e e e . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Player)
+    } else if (Upgrade_Choice == 4) {
+        Input_Choice = 4
+        Flappy_Goose = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            e . . . . . . . e e . . . . . . 
+            e e . . . . . . e e . . . . . . 
+            e e . . . . . e e e . . . . . . 
+            e e e . . e e e e . . . . . . . 
+            e e e e d d e e e . f f f . . . 
+            . e e e d d d e e f f f f f f f 
+            . e d d 1 1 d d d f f 1 1 f 2 . 
+            . e d d 1 1 1 d f f . . 1 f f f 
+            . d 1 1 1 1 1 d f f . . . . . . 
+            . e e 1 1 d e e . . . . . . . . 
+            . e . . . . . e . . . . . . . . 
+            e e e . . . e e e . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Player)
+    } else {
+    	
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     Lives = Lives - 1
+    Input_Choice = 0
+    Flappy_Goose = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        e . . . . . . . e e . . . . . . 
+        e e . . . . . . e e . . . . . . 
+        e e . . . . . e e e . . . . . . 
+        e e e . . e e e e . . . . . . . 
+        e e e e d d e e e . f f f . . . 
+        . e e e d d d e e f f f f f f f 
+        . e d d 1 1 d d d f f 1 1 f 2 . 
+        . e d d 1 1 1 d f f . . 1 f f f 
+        . d 1 1 1 1 1 d f f . . . . . . 
+        . e e 1 1 d e e . . . . . . . . 
+        . e . . . . . e . . . . . . . . 
+        e e e . . . e e e . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
 })
-let Upgrade_Choice = 0
 let Obstacle: Sprite = null
 let Obstacle_Choice = 0
 let Upgrade: Sprite = null
+let Upgrade_Choice = 0
 let Flappy_Goose: Sprite = null
 let Lives = 0
+let Input_Choice = 0
+Input_Choice = 0
 let time = 0
 Lives = 1
 info.setScore(0)
